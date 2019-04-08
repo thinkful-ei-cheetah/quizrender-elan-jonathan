@@ -1,5 +1,10 @@
 /* global Model */
 
+/**
+ * You can replace this Quiz with the version you worked on yesterday. It's just
+ * provided as an example.
+ */
+
 class Quiz extends Model {          // eslint-disable-line no-unused-vars
 
   // This class property could be used to determine the no. of quiz questions
