@@ -52,5 +52,14 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
       this.scoreHistory.push(this.score);
       this.end();
     }
+
+  }
+
+  resetGame()
+  {
+    this.unasked = [];
+    this.score = 0;
+    this.start();
+    return this.generateQuizApi();
   }
 }

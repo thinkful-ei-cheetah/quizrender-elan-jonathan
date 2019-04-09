@@ -110,6 +110,10 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
     this.model.update();
   }
 
-
-
+  handlePlayAgain(event) {
+    event.preventDefault();
+    this.model.resetGame().then(() =>{      
+      this.model.update();
+    });
+  }
 }
