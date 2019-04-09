@@ -21,7 +21,8 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   }
 
   _generateQuestion() {
-    console.log(`working`);
+    console.log(this.model.unasked.length);
+    console.log(this.model);
     return `
       <div>
         ${this.model.unasked[0].text}
@@ -30,7 +31,7 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   }
 
   template() {
-    if (this.model.active) {
+    if (this.model.active && this.model.unasked.length === 0) {
       return this._generateQuestion();
     } else {
       return this._generateIntro();
@@ -39,5 +40,6 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
 
   handleStart() {
     this.model.start();
+    this.model.update();
   }
 }
