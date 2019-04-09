@@ -21,10 +21,13 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.active=false;
   }
 
+  generateQuizApi() {
+    const quizApi = new QuizApi();
+    return quizApi.getItems(this);
+  }
+
   start() {
     this.active = true;
-    const quizApi = new QuizApi();
-    quizApi.getItems(this);
   }
 
   nextQuestion() {
