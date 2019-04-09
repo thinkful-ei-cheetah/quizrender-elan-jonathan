@@ -21,11 +21,21 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   }
 
   _generateQuestion() {
-    console.log(this.model.unasked.length);
-    console.log(this.model);
+    let radioTemplate ='';
+
+    
+    this.model.unasked[0].answers.forEach(item=>{
+     
+      radioTemplate +=`<input type="radio" id="${item}" name="${item}" value="${item}"> <label for="${item}">"${item}"</label><br />`;
+    });
+
     return `
-      <div>
+      <div>Question:
         ${this.model.unasked[0].text}
+        <br />Answer:<br />
+          ${radioTemplate}
+
+
       </div>
     `;
   }

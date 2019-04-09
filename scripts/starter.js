@@ -26,7 +26,7 @@ class Question {
 
 class QuizApi {
     constructor() {
-        this.BASE_URL = "https://opentdb.com/api.php?amount=10";
+        this.BASE_URL = "https://opentdb.com/api.php?amount=5";
     }
 
     getItems(passedQuiz) {
