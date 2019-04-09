@@ -17,7 +17,7 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.asked=[];
     this.activeQuestion={};
     this.score=0;
-    this.scoreHistory=[];
+    this.scoreHistory=0;
     this.active=false;
   }
 
@@ -49,7 +49,9 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.score += currentScore;
 
     if(this.unasked.length === 1) {
-      this.scoreHistory.push(this.score);
+      if(this.score > this.scoreHistory) {
+        this.scoreHistory = this.score;
+      }
       this.end();
     }
 
