@@ -11,7 +11,11 @@ class QuizStatus extends Renderer {
   
   template() {
     return `
-      <div>Score High Score Status</div>
+      <div>
+        <span>Score: ${this.model.score}</span>
+        <span>High Score: ${this.model.scoreHistory}</span>
+        <span>Progress: ${this.model.active}</span>
+      </div><br>
     `;
   }
 

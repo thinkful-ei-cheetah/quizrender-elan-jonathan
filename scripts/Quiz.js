@@ -30,24 +30,27 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.active = true;
   }
 
+  end() {
+    this.active = false;
+  }
+
   nextQuestion() {
     this.activeQuestion = this.unasked.shift();
+
   }
 
   submitAnswer(userAnswer) {
-
-    
     if (this.unasked.length > 0) {
         this.asked.push(this.activeQuestion);
     }
 
     this.unasked[0].submitAnswer(userAnswer);
-    //let currentScore = this.activeQuestion.answerStatus();
-   /// this.score += currentScore;
+    let currentScore = parseInt(this.unasked[0].answerStatus());
+    this.score += currentScore;
 
-    //this.scoreHistory.push(currentScore);
-    this.nextQuestion();
-
+    if(this.unasked.length === 1) {
+      this.scoreHistory.push(this.score);
+      this.end();
     }
-
   }
+}
