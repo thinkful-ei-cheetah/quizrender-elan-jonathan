@@ -5,7 +5,7 @@ class QuizStatus extends Renderer {
   // eslint-disable-line no-unused-vars
   getEvents() {
     return {
-      'click .start': 'handleStart',
+     
     };
   }
   
@@ -15,8 +15,5 @@ class QuizStatus extends Renderer {
     `;
   }
 
-  handleStart() {
-    this.model.update();
-  }
-
+  
 }

@@ -4,6 +4,7 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   getEvents() {
     return {
       'click .start': 'handleStart',
+      'click .question': 'handleAnswerSubmit',
     };
   }
 
@@ -26,17 +27,18 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
     
     this.model.unasked[0].answers.forEach(item=>{
      
-      radioTemplate +=`<input type="radio" id="${item}" name="${item}" value="${item}"> <label for="${item}">"${item}"</label><br />`;
+      radioTemplate +=`<input type="radio" id="${item}" name="radioName" value="${item}"> <label for="${item}">${item}</label><br />`;
     });
 
     return `
-      <div>Question:
+    <form class="current-question">
+      <div >Question:
         ${this.model.unasked[0].text}
         <br />Answer:<br />
           ${radioTemplate}
-
-
+          <button class="question">Start</button>
       </div>
+      </form>
     `;
   }
 
@@ -52,4 +54,16 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
     this.model.start();
     this.model.update();
   }
+
+  handleAnswerSubmit(event) {
+    event.preventDefault();
+    let submittedAnswer = $('input[name=radioName]:checked', '.current-question').val();
+
+
+    this.model.submitAnswer(submittedAnswer);
+    this.model.update();
+  }
+
+
+
 }

@@ -34,17 +34,16 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
     this.activeQuestion = this.unasked.shift();
   }
 
-  submitAnswer() {
+  submitAnswer(userAnswer) {
 
     
     if (this.unasked.length > 0) {
         this.asked.push(this.activeQuestion);
     }
-    let userAnswer = prompt('Please enter your answer');
 
-    this.activeQuestion.submitAnswer(userAnswer);
-    let currentScore = this.activeQuestion.answerStatus();
-    this.score += currentScore;
+    this.unasked[0].submitAnswer(userAnswer);
+    //let currentScore = this.activeQuestion.answerStatus();
+   /// this.score += currentScore;
 
     //this.scoreHistory.push(currentScore);
     this.nextQuestion();
