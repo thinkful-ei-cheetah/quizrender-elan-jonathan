@@ -24,41 +24,6 @@ class Question {
     }
 }
 
-class Quiz {
-    constructor() {
-        this.unasked=[];
-        this.asked=[];
-        this.activeQuestion={};
-        this.score=0;
-        this.scoreHistory=[];
-        this.active=false;
-    }
-    start() {
-        this.active = true;
-        const quizApi = new QuizApi();
-        quizApi.getItems(this);
-    }
-
-    nextQuestion() {
-        this.activeQuestion = this.unasked.pop();
-    }
-   
-    submitAnswer() {
-        if (this.unasked.length > 0) {
-            this.asked.push(this.activeQuestion);
-        }
-        let userAnswer = prompt('Please enter your answer');
-        console.log(userAnswer);
-        this.activeQuestion.submitAnswer(userAnswer);
-        let currentScore = this.activeQuestion.answerStatus();
-        this.score += currentScore;
-        console.log(this.score);
-        this.scoreHistory.push(currentScore);
-        this.nextQuestion();
-        console.log(this.activeQuestion);
-        }
-}
-
 class QuizApi {
     constructor() {
         this.BASE_URL = "https://opentdb.com/api.php?amount=10";
@@ -74,7 +39,3 @@ class QuizApi {
                   
             )}
 }
-
-const newQuiz = new Quiz;
-newQuiz.start();
-console.log(newQuiz)

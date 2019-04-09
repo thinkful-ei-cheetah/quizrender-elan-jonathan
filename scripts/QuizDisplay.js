@@ -21,9 +21,10 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   }
 
   _generateQuestion() {
+    console.log(`working`);
     return `
       <div>
-        ${this.model.questions[0].text}
+        ${this.model.unasked[0].text}
       </div>
     `;
   }
@@ -37,7 +38,6 @@ class QuizDisplay extends Renderer {    // eslint-disable-line no-unused-vars
   }
 
   handleStart() {
-    this.model.startNewGame();
-    this.model.update();
+    this.model.start();
   }
 }

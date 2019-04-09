@@ -13,14 +13,37 @@ class Quiz extends Model {          // eslint-disable-line no-unused-vars
 
   constructor() {
     super();
-
-    // Your Quiz model's constructor logic should go here. There is just examples below.
-    this.active = false;
-    this.questions = [{ id: 1, text: 'Question 1' }];
+    this.unasked=[];
+    this.asked=[];
+    this.activeQuestion={};
+    this.score=0;
+    this.scoreHistory=[];
+    this.active=false;
   }
 
-  startNewGame() {
+  start() {
     this.active = true;
+    const quizApi = new QuizApi();
+    quizApi.getItems(this);
   }
 
-}
+  nextQuestion() {
+    this.activeQuestion = this.unasked.shift();
+  }
+
+  submitAnswer() {
+    if (this.unasked.length > 0) {
+        this.asked.push(this.activeQuestion);
+    }
+    let userAnswer = prompt('Please enter your answer');
+    console.log(userAnswer);
+    this.activeQuestion.submitAnswer(userAnswer);
+    let currentScore = this.activeQuestion.answerStatus();
+    this.score += currentScore;
+    console.log(this.score);
+    this.scoreHistory.push(currentScore);
+    this.nextQuestion();
+    console.log(this.activeQuestion);
+    }
+
+  }
